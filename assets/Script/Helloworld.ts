@@ -11,7 +11,7 @@ export default class Helloworld extends cc.Component {
 
     start () {
         // init logic
-        this.text = 'hello wlq';
+        this.text = 'hello WCG';
         this.label.string = this.text;
     }
 }

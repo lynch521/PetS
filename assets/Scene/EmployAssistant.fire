@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.5328125,
-      "y": 0.5328125,
+      "x": 0.5328124999999999,
+      "y": 0.5328124999999999,
       "z": 1
     },
     "_quat": {
@@ -69,14 +69,14 @@
         "__id__": 3
       },
       {
-        "__id__": 15
+        "__id__": 16
       }
     ],
     "_active": true,
     "_level": 1,
     "_components": [
       {
-        "__id__": 17
+        "__id__": 18
       }
     ],
     "_prefab": null,
@@ -147,10 +147,10 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 13
+        "__id__": 14
       },
       {
-        "__id__": 14
+        "__id__": 15
       }
     ],
     "_prefab": null,
@@ -391,6 +391,9 @@
       },
       {
         "__id__": 12
+      },
+      {
+        "__id__": 13
       }
     ],
     "_prefab": null,
@@ -414,8 +417,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 337,
-      "y": -212,
+      "x": 345,
+      "y": -255,
       "z": 0
     },
     "_scale": {
@@ -619,6 +622,17 @@
     "_id": "3czYzVpQ1Fk4nMl7ARcWCh"
   },
   {
+    "__type__": "dec09ZKzDBEwKgINs2tAzaQ",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 8
+    },
+    "_enabled": true,
+    "label": null,
+    "_id": "1boB/luBVHg4nnmzrEYFXm"
+  },
+  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -647,7 +661,7 @@
     "_id": "e2PQrEr9BEZ7x7M/5oLoKY"
   },
   {
-    "__type__": "c649blHrBVBQ6ZkTgPvv2XX",
+    "__type__": "56475bqa01Pwqxyr1yzfxx3",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -657,7 +671,7 @@
     "resumePrefab": {
       "__uuid__": "3536afd7-be08-4b85-bbe6-a0b607b3bbb2"
     },
-    "_id": "d7fovrev1IO7AjO5Zka28I"
+    "_id": "15EFXn3lpO5ITHSI71opmI"
   },
   {
     "__type__": "cc.Node",
@@ -671,7 +685,7 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 16
+        "__id__": 17
       }
     ],
     "_prefab": null,
@@ -725,7 +739,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 15
+      "__id__": 16
     },
     "_enabled": true,
     "_cullingMask": 4294967295,

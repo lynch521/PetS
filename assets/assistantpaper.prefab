@@ -65,7 +65,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 147,
-      "height": 280
+      "height": 260
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -101,7 +101,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "sprite",
+    "_name": "icon",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -137,8 +137,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -13.7755102,
-      "y": 88.2653061,
+      "x": -19,
+      "y": 91,
       "z": 0
     },
     "_scale": {
@@ -196,9 +196,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "809c0748-d34e-473d-a817-7f37a1fadef0"
+      "__uuid__": "3536afd7-be08-4b85-bbe6-a0b607b3bbb2"
     },
-    "fileId": "c8BOLL1ppMfL94N5DCHHj5",
+    "fileId": "c0E4vGAzRLAaf7wKFDtz7k",
     "sync": false
   },
   {
@@ -295,7 +295,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "809c0748-d34e-473d-a817-7f37a1fadef0"
+      "__uuid__": "3536afd7-be08-4b85-bbe6-a0b607b3bbb2"
     },
     "fileId": "84EqjxnRpKn6rMftGNeM0e",
     "sync": false
@@ -394,7 +394,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "809c0748-d34e-473d-a817-7f37a1fadef0"
+      "__uuid__": "3536afd7-be08-4b85-bbe6-a0b607b3bbb2"
     },
     "fileId": "fac1c05OVIBZrICxeIuoLO",
     "sync": false
@@ -493,7 +493,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "809c0748-d34e-473d-a817-7f37a1fadef0"
+      "__uuid__": "3536afd7-be08-4b85-bbe6-a0b607b3bbb2"
     },
     "fileId": "1dIzuCCVZNWoqLDWTa0jvw",
     "sync": false
@@ -592,7 +592,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "809c0748-d34e-473d-a817-7f37a1fadef0"
+      "__uuid__": "3536afd7-be08-4b85-bbe6-a0b607b3bbb2"
     },
     "fileId": "70SqEI+7VGP72WC44hWgAF",
     "sync": false
@@ -691,7 +691,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "809c0748-d34e-473d-a817-7f37a1fadef0"
+      "__uuid__": "3536afd7-be08-4b85-bbe6-a0b607b3bbb2"
     },
     "fileId": "4cG1rjT4FFEpmu9LxCTss2",
     "sync": false
@@ -790,7 +790,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "809c0748-d34e-473d-a817-7f37a1fadef0"
+      "__uuid__": "3536afd7-be08-4b85-bbe6-a0b607b3bbb2"
     },
     "fileId": "23q3F0XmNNOqCRvYhyUGmv",
     "sync": false
@@ -959,7 +959,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "809c0748-d34e-473d-a817-7f37a1fadef0"
+      "__uuid__": "3536afd7-be08-4b85-bbe6-a0b607b3bbb2"
     },
     "fileId": "6bxBworRtLvLnP2L23qp/h",
     "sync": false
@@ -1063,7 +1063,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "809c0748-d34e-473d-a817-7f37a1fadef0"
+      "__uuid__": "3536afd7-be08-4b85-bbe6-a0b607b3bbb2"
     },
     "fileId": "61RXeaQ8lAuYmRHtmptPwn",
     "sync": false
@@ -1104,22 +1104,8 @@
       "__id__": 1
     },
     "_enabled": true,
-    "assistantData": {
-      "assistant_id": 1,
-      "assistant_name": "laowang",
-      "assistant_icon": 1,
-      "assistant_lvl": 0,
-      "assistant_exp": 0,
-      "assistant_intelligence": 10,
-      "assistant_eloquence": 11,
-      "assistant_operation": 12,
-      "assistant_knowledge": 13,
-      "assistant_skill": [
-        10,
-        21,
-        31
-      ],
-      "assistant_salary": 1000
+    "icon": {
+      "__id__": 3
     },
     "assistantname": {
       "__id__": 6
@@ -1147,7 +1133,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "809c0748-d34e-473d-a817-7f37a1fadef0"
+      "__uuid__": "3536afd7-be08-4b85-bbe6-a0b607b3bbb2"
     },
     "fileId": "10QrTtUTdExYzp11o5bwPv",
     "sync": false

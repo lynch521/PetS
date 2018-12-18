@@ -13,7 +13,7 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class newResume extends cc.Component {
 
-    @property
+
     assistantData ={
         assistant_id: 1 ,
         assistant_name: "laowang",
@@ -29,8 +29,8 @@ export default class newResume extends cc.Component {
     };
 
 
-    //@property(cc.Sprite)
-    //icon: cc.Sprite = null;
+    @property(cc.Sprite)
+    icon: cc.Sprite = null;
 
     @property(cc.Label)
     assistantname: cc.Label = null;
@@ -50,34 +50,22 @@ export default class newResume extends cc.Component {
     @property(cc.Label)
     knowledge: cc.Label = null;
 
-    public newAssistant() {
 
-
-
-    }
 
     public newAssistantresume() {
         // 生成新的员工     
-
-        this.assistantname.string=this.assistantData.assistant_name;
-        this.intelligence.string="聪敏"+String(this.assistantData.assistant_intelligence);
-        this.eloquence.string="口才"+String(this.assistantData.assistant_eloquence);
-        this.operation.string="操作"+String(this.assistantData.assistant_operation);
-        this.knowledge.string="知识"+String(this.assistantData.assistant_knowledge);
+        this.operation.string="k";
+        //this.assistantname.string=this.assistantData.assistant_name;
+        //this.intelligence.string="聪敏"+String(this.assistantData.assistant_intelligence);
+        //this.eloquence.string="口才"+String(this.assistantData.assistant_eloquence);
+        //this.operation.string="操作"+String(this.assistantData.assistant_operation);
+        //this.knowledge.string="知识"+String(this.assistantData.assistant_knowledge);
         //this.skill.string=this.getSkillname(this.assistantData.assistant_skill);
 
 
-        // 将新增的节点添加到 Canvas 节点下面
-        //this.node.addChild(newResume);
-        // 为简历设置一个位置
-        //newResume.setPosition(0,0);
-        // 将 Game 组件的实例传入星星组件
-        //newResume.getComponent('Star').init(this);
-    }
-
-    public getSkillname() {
 
     }
+
 
 
     // LIFE-CYCLE CALLBACKS:

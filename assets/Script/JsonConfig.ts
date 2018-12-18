@@ -14,6 +14,11 @@ export class JsonConfig
         return this.Config[type][id - 1];  
     }
 
+    static getAllitem(type:ConfigType):any
+    {   
+        return this.Config[type];  
+    }
+
     static setItem(type:ConfigType,id:number,item:any):void 
     {
         this.Config[type][id - 1] = item;

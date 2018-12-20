@@ -24,10 +24,10 @@ export default class List extends cc.Component {
         assistant_skill:[],
     };
 
-    namepool = ["zhao","qian","sun","li","zhou"];
-    skillpool = ["天才","白痴","笨蛋","蠢货","zhou"];
-    iconpool = ["assistant001","assistant002","assistant003","assistant004","assistant005"];
-
+    namepool:string[] = [];
+    skillpool:number[] = [];
+    iconpool:string[] = [];
+//"assistant001","assistant002","assistant003","assistant004","assistant005","assistant006"
 
     min_beginning_assistant_property = 1;
     max_beginning_assistant_property = 20;
@@ -68,19 +68,52 @@ export default class List extends cc.Component {
                     console.log("配置加载完成");
                     //cc.director.loadScene("helloworld");
                 }
+                else
+                {
+                    console.log("出错了");
+                }
                                          
             }
         )
         
 
-        //console.log(this.max_beginning_assistant_property);
-        
-        //console.log(JsonConfig.getItem(ConfigType.Settingg,2).settingname);
         this.min_beginning_assistant_property = JsonConfig.getItem(ConfigType.Setting,1).setting_value;
         this.max_beginning_assistant_property = JsonConfig.getItem(ConfigType.Setting,2).setting_value;
         this.beginning_assistant_lvl = JsonConfig.getItem(ConfigType.Setting,3).setting_value;
         this.beginning_assistant_exp = JsonConfig.getItem(ConfigType.Setting,4).setting_value;
         this.beginning_assistant_skill_amount = JsonConfig.getItem(ConfigType.Setting,5).setting_value;
+
+        for(let i in JsonConfig.getItem(ConfigType.Randompool,3)){
+            
+            if(i=="id"||i=="random_name"){
+                
+            }
+            else
+            {
+                this.namepool.push(JsonConfig.getItem(ConfigType.Randompool,3)[i]);
+            }
+        }
+        for(let i in JsonConfig.getItem(ConfigType.Randompool,2)){
+            if(i=="id"||i=="random_name"){
+                
+            }
+            else
+            {
+                this.iconpool.push(JsonConfig.getItem(ConfigType.Randompool,2)[i]);
+            }
+        }
+        
+        
+        for(let i in JsonConfig.getAllItem(ConfigType.Skills)){
+            //console.log(JsonConfig.getAllItem(ConfigType.Skills)[i]);
+            for(let j in JsonConfig.getAllItem(ConfigType.Skills)[i]){
+                if(j=="skill_name")
+                this.skillpool.push(JsonConfig.getAllItem(ConfigType.Skills)[i][j]);
+            }
+        }
+
+
+
     }
 
     initListData (){
@@ -99,7 +132,6 @@ export default class List extends cc.Component {
     newassistant(){
         this.assistantResumeData.assistant_id = 1;
         this.assistantResumeData.assistant_name = this.namepool[this.random(0,this.namepool.length-1)];
-        //this.assistantResumeData.assistant_name = JsonConfig.getItem(ConfigType.StaffExp,1).desc
         this.assistantResumeData.assistant_icon = this.iconpool[this.random(0,this.iconpool.length-1)];
         this.assistantResumeData.assistant_lvl = this.beginning_assistant_lvl;
         this.assistantResumeData.assistant_exp = this.beginning_assistant_exp;

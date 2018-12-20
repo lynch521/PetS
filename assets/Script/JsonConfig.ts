@@ -2,12 +2,10 @@ export class JsonConfig
 {
     static JsonPath:string[] = 
     [
-        "jsonConfig/settingg",
         "jsonConfig/tbl_staff_exp",
         "jsonConfig/tbl_staff_exp1",
         "jsonConfig/setting",
         "jsonConfig/skills",
-        "jsonConfig/assistant",
         "jsonConfig/randompool",
     ];
 
@@ -19,10 +17,10 @@ export class JsonConfig
         return this.Config[type][id - 1];  
     }
 
-    //static getAllItem(type:ConfigType):any
-    //{   
-    //    return this.Config[type];  
-    //}
+    static getAllItem(type:ConfigType):any
+    {   
+        return this.Config[type];  
+    }
 
     static setItem(type:ConfigType,id:number,item:any):void 
     {
@@ -43,11 +41,9 @@ export class JsonConfig
 }
 
 export enum ConfigType {
-    Settingg = 0,
     StaffExp,
     StaffExp1,
     Setting,
     Skills,
-    Assistant,
     Randompool,
 };

@@ -1,5 +1,4 @@
 
-import {JsonConfig,ConfigType} from '../JsonConfig'
 
 const {ccclass, property} = cc._decorator;
 
@@ -7,11 +6,20 @@ const {ccclass, property} = cc._decorator;
 export default class EmployAssistant extends cc.Component {
 
 
-
-    @property(cc.Prefab)
-    private resumePrefab: cc.Prefab = null;
-
-    
+    assistantResumeData ={
+        assistant_id: 1 ,
+        assistant_name: "laowang",
+        assistant_icon:1,
+        assistant_lvl:0,
+        assistant_exp:0,
+        assistant_intelligence:10,
+        assistant_eloquence:11,
+        assistant_operation:12,
+        assistant_knowledge:13,
+        assistant_skill:["10","21","31"],
+        assistant_salary:1000
+    };
+   
 
 
     //加载后立即执行生成新的简历
@@ -21,26 +29,19 @@ export default class EmployAssistant extends cc.Component {
 
     }
 
+
+    public newAssistant() {
+     
+        
+           
+
+    }
+
+
     // 生成一个新的简历
     public spawnNewResume() {
-    
-        let resumes :cc.Node = null;
+     
         
-        let a:number = 0;  
-        
-        this.node.addChild(resumes); 
-        
-        resumes.setPosition(200,0);
-        
-        for(a=-1;a<2;a++){
-          // 使用给定的模板在场景中生成一个新简历
-        let newResume = cc.instantiate(this.resumePrefab);
-        // 将新增的节点添加到 Canvas 节点下面
-        //resumes.addChild(newResume);
-        this.node.addChild(newResume);
-        // 为简历设置一个位置
-        newResume.setPosition(a*400,30);  
-        }  
            
 
     }
@@ -49,9 +50,8 @@ export default class EmployAssistant extends cc.Component {
 
 
 
-
     start () {
-        
+        this.node.showAssistantresume(this.assistantResumeData);
     }
 
     // update (dt) {}

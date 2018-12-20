@@ -11,22 +11,9 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class newResume extends cc.Component {
+export default class NewResume extends cc.Component {
 
 
-    assistantData ={
-        assistant_id: 1 ,
-        assistant_name: "laowang",
-        assistant_icon:1,
-        assistant_lvl:0,
-        assistant_exp:0,
-        assistant_intelligence:10,
-        assistant_eloquence:11,
-        assistant_operation:12,
-        assistant_knowledge:13,
-        assistant_skill:["10","21","31"],
-        assistant_salary:1000
-    };
 
 
     @property(cc.Sprite)
@@ -34,9 +21,6 @@ export default class newResume extends cc.Component {
 
     @property(cc.Label)
     assistantname: cc.Label = null;
-
-    @property(cc.Label)
-    skill: cc.Label = null;
 
     @property(cc.Label)
     intelligence: cc.Label = null;
@@ -50,20 +34,28 @@ export default class newResume extends cc.Component {
     @property(cc.Label)
     knowledge: cc.Label = null;
 
+    @property(cc.Label)
+    skill: cc.Label = null;
 
 
-    public newAssistantresume() {
+
+    public showAssistantresume(assistantResumeData:any) {
         // 生成新的员工     
-        this.operation.string="k";
-        //this.assistantname.string=this.assistantData.assistant_name;
-        //this.intelligence.string="聪敏"+String(this.assistantData.assistant_intelligence);
-        //this.eloquence.string="口才"+String(this.assistantData.assistant_eloquence);
-        //this.operation.string="操作"+String(this.assistantData.assistant_operation);
-        //this.knowledge.string="知识"+String(this.assistantData.assistant_knowledge);
-        //this.skill.string=this.getSkillname(this.assistantData.assistant_skill);
+         let icon:cc.Sprite = this.icon;
 
+        cc.loader.loadRes(assistantResumeData.assistant_icon, cc.SpriteFrame, function (err, spriteFrame) {
+            icon.spriteFrame = spriteFrame;
+            });
 
-
+        this.assistantname.string=assistantResumeData.assistant_name;
+        this.intelligence.string=String(assistantResumeData.assistant_intelligence);
+        this.eloquence.string=String(assistantResumeData.assistant_eloquence);
+        this.operation.string=String(assistantResumeData.assistant_operation);
+        this.knowledge.string=String(assistantResumeData.assistant_knowledge);
+        for(let i = 0; i < assistantResumeData.assistant_skill.length; i++){
+            this.skill.string = this.skill.string+assistantResumeData.assistant_skill[i]+" ";
+        }
+            
     }
 
 
@@ -71,10 +63,8 @@ export default class newResume extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        this.newAssistantresume();    
-        
-        
-        
+             
+        //this.showAssistantresume(this.assistantResumeData);
         //this.icon.spriteFrame = new cc.SpriteFrame(cc.url.raw('Texture/assistant/assistant002.jpg'));
 
     }

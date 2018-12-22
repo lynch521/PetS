@@ -12,6 +12,8 @@ export class Skill {
         skill_remark:"无",
     };   
     
+
+    
     static getSkillMaxlvl(skill_id:number){//最高等级
         for(let i in JsonConfig.getAllItem(ConfigType.Skills)){
             if(JsonConfig.getAllItem(ConfigType.Skills)[i].id==skill_id){
@@ -83,4 +85,18 @@ export class Skill {
         }            
         return this.skillInformation;
     }
+
+    static getAllSkillid(){//获取全部技能ID
+        let list = [];
+        for(let i in JsonConfig.getAllItem(ConfigType.Skills)){            
+            list.push(JsonConfig.getAllItem(ConfigType.Skills)[i].id);
+        }
+        return list;
+    }
+
+
+
+
+
+
 }

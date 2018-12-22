@@ -36,7 +36,34 @@ export default class EmployAssistant extends cc.Component {
            
 
     }
+    cc.loader.loadResArray(JsonConfig.JsonPath,
+        function(completedCount,totalCount,item) {
+           if(item)
+           {
+                
+                JsonConfig.setJson(completedCount - 1,item.content);
 
+           }
+           else
+           {
+                console.log("载入错误");
+           }
+
+        },
+        function(error,resource)
+        {
+            if(resource) 
+            {
+                console.log("配置加载完成");
+                //cc.director.loadScene("helloworld");
+            }
+            else
+            {
+                console.log("出错了");
+            }
+                                     
+        }
+    )
 
     // 生成一个新的简历
     public spawnNewResume() {

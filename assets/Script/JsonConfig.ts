@@ -6,6 +6,7 @@ export class JsonConfig
         "jsonConfig/tbl_staff_exp1",
         "jsonConfig/setting",
         "jsonConfig/skills",
+        "jsonConfig/assistant",
         "jsonConfig/randompool",
     ];
 
@@ -45,5 +46,6 @@ export enum ConfigType {
     StaffExp1,
     Setting,
     Skills,
+    Assisitant,
     Randompool,
 };

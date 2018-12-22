@@ -9,8 +9,6 @@ export default class List extends cc.Component {
     @property(cc.Prefab)
     item:cc.Prefab = null;
 
-    //@property(cc.ScrollView)
-    //scroll_view:cc.ScrollView = null;
     assistantResumeData ={
         assistant_id: 0 ,
         assistant_name: "默认",
@@ -26,7 +24,9 @@ export default class List extends cc.Component {
 
     namepool:string[] = [];
     skillpool:number[] = [];
+    skillnamepool:string[] = [];
     iconpool:string[] = [];
+    
 //"assistant001","assistant002","assistant003","assistant004","assistant005","assistant006"
 
     min_beginning_assistant_property = 1;
@@ -41,40 +41,26 @@ export default class List extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        
         this.loadsetting();
+        //this.loadAssistant();
+
+        /*for(let i in this.namepool){
+            console.log(i);
+        }
+        for(let i in this.skillnamepool){
+            console.log(i);
+        }
+        for(let i in this.skillpool){
+            console.log(i);
+        }   */
+
         this.initListData();
     }
 
     loadsetting(){
         //读取json配置文件
-        cc.loader.loadResArray(JsonConfig.JsonPath,
-            function(completedCount,totalCount,item) {
-               if(item)
-               {
-                    
-                    JsonConfig.setJson(completedCount - 1,item.content);
-
-               }
-               else
-               {
-                    console.log("载入错误");
-               }
-
-            },
-            function(error,resource)
-            {
-                if(resource) 
-                {
-                    console.log("配置加载完成");
-                    //cc.director.loadScene("helloworld");
-                }
-                else
-                {
-                    console.log("出错了");
-                }
-                                         
-            }
-        )
+        
         
 
         this.min_beginning_assistant_property = JsonConfig.getItem(ConfigType.Setting,1).setting_value;
@@ -107,11 +93,17 @@ export default class List extends cc.Component {
         for(let i in JsonConfig.getAllItem(ConfigType.Skills)){
             //console.log(JsonConfig.getAllItem(ConfigType.Skills)[i]);
             for(let j in JsonConfig.getAllItem(ConfigType.Skills)[i]){
-                if(j=="skill_name")
+                if(j=="id")
                 this.skillpool.push(JsonConfig.getAllItem(ConfigType.Skills)[i][j]);
+                if(j=="skill_name")
+                this.skillnamepool.push(JsonConfig.getAllItem(ConfigType.Skills)[i][j]);
             }
         }
 
+        //for(let i in JsonConfig.getAllItem(ConfigType.Skills)){
+        //    console.log(i);
+        //    console.log(JsonConfig.getAllItem(ConfigType.Skills)[i].id);
+        //}
 
 
     }
@@ -129,6 +121,22 @@ export default class List extends cc.Component {
         return min+Math.floor(Math.random()*(max-min+1));
     }
 
+    saveAssistant(assistantResumeData){
+        
+    }
+
+
+    loadAssistant(){
+        let list:any = [[]];
+        list = JsonConfig.getAllItem(ConfigType.Assisitant);
+        for(let i in list){
+            console.log(i);
+        }
+        
+       
+    }
+
+
     newassistant(){
         this.assistantResumeData.assistant_id = 1;
         this.assistantResumeData.assistant_name = this.namepool[this.random(0,this.namepool.length-1)];
@@ -141,7 +149,7 @@ export default class List extends cc.Component {
         this.assistantResumeData.assistant_operation = this.random(this.min_beginning_assistant_property,this.max_beginning_assistant_property);
         this.assistantResumeData.assistant_skill = [];
             for(let i= 0; i < this.beginning_assistant_skill_amount;i++){
-                this.assistantResumeData.assistant_skill.push(this.skillpool[this.random(0,this.skillpool.length-1)]); 
+                this.assistantResumeData.assistant_skill.push(this.skillnamepool[this.random(0,this.skillnamepool.length-1)]); 
             }
         
 

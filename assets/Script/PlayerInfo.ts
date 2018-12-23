@@ -7,7 +7,7 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-import {EmployInfo} from './EmployAssistant/EmployInfo';
+import {AssistantList} from './AssistantList';
 
 export class PlayerInfo {
 
@@ -22,7 +22,7 @@ export class PlayerInfo {
     //当前回合
     private _currentRound:number;
     //职工数据
-    //employList:Array<EmployInfo> = new Array<EmployInfo>();
+    private _assistantList:any[];
     //金币
     private _gold:number;
 
@@ -65,6 +65,17 @@ export class PlayerInfo {
         return this._currentRound;
     }
 
+    set assistantList(assistantList:any[])
+    {
+        PlayerInfo.ins._assistantList = assistantList;
+        this.jsonObj.assistantList = assistantList;
+    }
+
+    get assistantList():any[]
+    {
+        return this._assistantList;
+    }
+
     //----------------------------getter setter----------------------------
 
     /**
@@ -87,6 +98,7 @@ export class PlayerInfo {
         this.shopName = "";
         this.gold = 0;
         this.currentRound = 1;
+        this.assistantList = new Array<any>();
     }
 
     /**
@@ -113,6 +125,7 @@ export class PlayerInfo {
             PlayerInfo.ins.shopName = this.jsonObj.shopName;
             PlayerInfo.ins.currentRound = this.jsonObj.currentRound as number;
             PlayerInfo.ins.gold = this.jsonObj.gold as number;
+            PlayerInfo.ins.assistantList = this.jsonObj.assistantList;
 
             return PlayerInfo.ins;
         }

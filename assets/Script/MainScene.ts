@@ -61,4 +61,10 @@ export default class MainScene extends cc.Component {
     {
         PlayerInfo.getIns().removePlayerInfo("playerInfo");
     }
+
+    private employassisstant(){
+        cc.director.loadScene("EmployAssistant");
+    }
+
+
 }

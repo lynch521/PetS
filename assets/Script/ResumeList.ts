@@ -16,39 +16,41 @@ export default class ResumeList extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        this.initResumeListData();
+        this.node.getChildByName("scrollview").active =false;
+        this.initResumeData();
     }
 
     
 
-    initResumeListData (){
+    initResumeData (){
         for (let i= 0;i<3;i++){
-            let mItemPrefab = cc.instantiate(this.item);
+            let mItemPrefab = cc.instantiate(this.item);            
             this.getComponent(cc.ScrollView).content.addChild(mItemPrefab);
-            //使用预制中的函数，作用是将导入的员工信息显示在界面上
-            
+            mItemPrefab.getComponent("NewResume").showAssistantresume(new Assistant);//使用预制中的函数，作用是将导入的员工信息显示在界面上           
         }
     }
 
-    initListData (){
+    showlist (){
+        this.node.getChildByName("scrollview").active = true;
         for (let i in AssistantList.getCurrentAssistantList()){
-            
             let mItemPrefab = cc.instantiate(this.item);
-            this.getComponent(cc.ScrollView).content.addChild(mItemPrefab);
-            //使用预制中的函数，作用是将导入的员工信息显示在界面上
-            
-        }
+            mItemPrefab.getChildByName("button").active =false;
+            this.getComponentInChildren(cc.ScrollView).content.addChild(mItemPrefab);
+            mItemPrefab.getComponent("NewResume").showAssistantresume(AssistantList.getCurrentAssistantList()[i]);
+            }
     }
 
 
-    public showList(){
-        AssistantList.showlist();
+    public closelist(){        
+        this.node.getComponentInChildren(cc.ScrollView).content.removeAllChildren();      
+        this.node.getChildByName("scrollview").active =false;
     }
 
     public refresh(){        
         this.getComponent(cc.ScrollView).content.removeAllChildren();        
-        this.initListData();
+        this.initResumeData();
     }
+
 
     start () {
 

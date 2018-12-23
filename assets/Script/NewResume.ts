@@ -32,18 +32,14 @@ export default class NewResume extends cc.Component {
     @property(cc.Prefab)
     skillnode: cc.Prefab = null;
 
-    newassistant:Assistant;
+    currentassistant:Assistant;
 
 
 
 
     public showAssistantresume(assistant:Assistant) {
         // 展示员工信息     
-        
-        if(this.node.parent.name=="listcontent"){
-            this.node.getChildByName("button").destroy();
-        }
-        
+        this.currentassistant = assistant;
         let icon:cc.Sprite = this.icon;
 
         cc.loader.loadRes(assistant.assistant_icon, cc.SpriteFrame, function (err, spriteFrame) {
@@ -65,30 +61,21 @@ export default class NewResume extends cc.Component {
             this.skillcontant.node.addChild(mItemPrefab);
             //使用预制中的函数，作用是将导入的员工信息显示在界面上
 
-            mItemPrefab.getComponent("Skillnode").showskill(assistant.assistant_skill[i]);
-            //
-            
-            //this.skill.string = this.skill.string+Skill.getSkillName(assistant.assistant_skill[i])+" ";
+            mItemPrefab.getComponent("Skillnode").showskill(assistant.assistant_skill[i]);            
         }
             
     }
 
 
-
     public chooseassistant(){
-
-        this.newassistant.employassistant();
+        this.currentassistant.employassistant();
         this.node.destroy();
     }
 
-
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
-        this.newassistant = new Assistant;
-        this.showAssistantresume(this.newassistant);  
-        //this.showAssistantresume(this.assistant);
-        //this.icon.spriteFrame = new cc.SpriteFrame(cc.url.raw('Texture/assistant/assistant002.jpg'));
+    onLoad () {       
+        
 
     }
 

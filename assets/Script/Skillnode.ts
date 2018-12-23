@@ -36,7 +36,7 @@ export default class Skillnode extends cc.Component {
 
         //获取icon资源名称，载入资源，赋值给skill_icon的精灵帧属性   因为资源问题
         cc.loader.loadRes(Skill.getSkillIcon(skill_id), cc.SpriteFrame, function (err, spriteFrame) {
-            console.log(Skill.getSkillIcon(skill_id));
+            //console.log(Skill.getSkillIcon(skill_id));
             icon.spriteFrame = spriteFrame;
             });
         //

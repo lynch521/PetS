@@ -285,7 +285,7 @@
     "_spriteFrame": {
       "__uuid__": "29158224-f8dd-4661-a796-1ffab537140e"
     },
-    "_type": 0,
+    "_type": 1,
     "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
@@ -872,7 +872,7 @@
     },
     "_enabled": true,
     "item": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__uuid__": "3c96553b-5961-4439-b50e-c214d5f37aa9"
     },
     "_id": "7e08i3LRZFHI49djpux6gl"
   },

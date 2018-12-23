@@ -3,7 +3,17 @@ import {JsonConfig, ConfigType} from "./JsonConfig"
 export class Skill {
     
     static skillInformation = {
-        id:1,
+        id:0,
+        skill_maxlvl:1,
+        skill_isupdate:0,
+        skill_name:"0",
+        skill_icon:"0",
+        skill_text:"0",
+        skill_remark:"0",
+    };   
+    
+    static dfaultSkillInformation = {
+        id:0,
         skill_maxlvl:1,
         skill_isupdate:0,
         skill_name:"空技能",
@@ -12,77 +22,56 @@ export class Skill {
         skill_remark:"无",
     };   
     
-
-    
     static getSkillMaxlvl(skill_id:number){//最高等级
-        for(let i in JsonConfig.getAllItem(ConfigType.Skills)){
-            if(JsonConfig.getAllItem(ConfigType.Skills)[i].id==skill_id){
-                return JsonConfig.getAllItem(ConfigType.Skills)[i].skill_maxlvl;
-            }
+        
+        return JsonConfig.getItem(ConfigType.Skills,skill_id).skill_maxlvl;
+      
 
-        }
     }
 
     static getSkillIsupdate(skill_id:number){//可升级
-        for(let i in JsonConfig.getAllItem(ConfigType.Skills)){
-            if(JsonConfig.getAllItem(ConfigType.Skills)[i].id==skill_id){
-                return JsonConfig.getAllItem(ConfigType.Skills)[i].skill_isupdate;
-            }
-
-        }
+        return JsonConfig.getItem(ConfigType.Skills,skill_id).skill_isupdate;
     }
     
     static getSkillName(skill_id:number){//技能名称
-        for(let i in JsonConfig.getAllItem(ConfigType.Skills)){
-            if(JsonConfig.getAllItem(ConfigType.Skills)[i].id==skill_id){
-                return JsonConfig.getAllItem(ConfigType.Skills)[i].skill_name;
-            }
-
-        }
+        return JsonConfig.getItem(ConfigType.Skills,skill_id).skill_name;
     }
 
     static getSkillIcon(skill_id:number){//技能图标
-        for(let i in JsonConfig.getAllItem(ConfigType.Skills)){
-            if(JsonConfig.getAllItem(ConfigType.Skills)[i].id==skill_id){
-                return JsonConfig.getAllItem(ConfigType.Skills)[i].skill_icon;
-            }
-
-        }
+        return JsonConfig.getItem(ConfigType.Skills,skill_id).skill_icon;
     }
 
 
     static getSkillText(skill_id:number){//技能文本
-        for(let i in JsonConfig.getAllItem(ConfigType.Skills)){
-            if(JsonConfig.getAllItem(ConfigType.Skills)[i].id==skill_id){
-                return JsonConfig.getAllItem(ConfigType.Skills)[i].skill_text;
-            }
-
-        }
+        return JsonConfig.getItem(ConfigType.Skills,skill_id).skill_text;
     }
 
     static getSkillRemark(skill_id:number){//技能备注
-        for(let i in JsonConfig.getAllItem(ConfigType.Skills)){
-            if(JsonConfig.getAllItem(ConfigType.Skills)[i].id==skill_id){
-                return JsonConfig.getAllItem(ConfigType.Skills)[i].skill_remark;
-            }
-
-        }
+        return JsonConfig.getItem(ConfigType.Skills,skill_id).skill_remark;
     }
 
-    static getSkill(skill_id:number){
+    static getSkill(skill_id:number){            
+        
+        let ismatch:number = 0;
         for(let i in JsonConfig.getAllItem(ConfigType.Skills)){
-            if(JsonConfig.getAllItem(ConfigType.Skills)[i].id==skill_id){
-                this.skillInformation.id = JsonConfig.getAllItem(ConfigType.Skills)[i].skill_id;
-                this.skillInformation.skill_maxlvl= JsonConfig.getAllItem(ConfigType.Skills)[i].skill_maxlvl;
-                this.skillInformation.skill_isupdate = JsonConfig.getAllItem(ConfigType.Skills)[i].skill_isupdate;
-                this.skillInformation.skill_name = JsonConfig.getAllItem(ConfigType.Skills)[i].skill_name;
-                this.skillInformation.skill_icon = JsonConfig.getAllItem(ConfigType.Skills)[i].skill_icon;
-                this.skillInformation.skill_text = JsonConfig.getAllItem(ConfigType.Skills)[i].skill_text;
-                this.skillInformation.skill_remark = JsonConfig.getAllItem(ConfigType.Skills)[i].skill_remark;
+            if(JsonConfig.getAllItem(ConfigType.Skills)[i].id==skill_id){                
+                ismatch = 1;
                 break;
             }
+        }    
+        if(ismatch == 0){
+            console.log("技能ID错误，该技能不存在");
+            return this.dfaultSkillInformation;
+        }
 
-        }            
+        this.skillInformation.id = skill_id;
+        this.skillInformation.skill_maxlvl= JsonConfig.getItem(ConfigType.Skills,skill_id).skill_maxlvl;
+        this.skillInformation.skill_isupdate = JsonConfig.getItem(ConfigType.Skills,skill_id).skill_isupdate;
+        this.skillInformation.skill_name = JsonConfig.getItem(ConfigType.Skills,skill_id).skill_name;
+        this.skillInformation.skill_icon = JsonConfig.getItem(ConfigType.Skills,skill_id).skill_icon;
+        this.skillInformation.skill_text = JsonConfig.getItem(ConfigType.Skills,skill_id).skill_text;
+        this.skillInformation.skill_remark = JsonConfig.getItem(ConfigType.Skills,skill_id).skill_remark;
+
         return this.skillInformation;
     }
 

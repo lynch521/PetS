@@ -57,7 +57,7 @@
       }
     ],
     "_active": true,
-    "_level": 1,
+    "_level": 2,
     "_components": [
       {
         "__id__": 46
@@ -208,9 +208,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "52cEDQUT5BB4A/vJO/zoTY",
+    "fileId": "5dgeZ6LotPvaOJ4sXY0YSQ",
     "sync": false
   },
   {
@@ -307,9 +307,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "39KEfR3ldMlYQu+6wj5Hga",
+    "fileId": "f7pdxdYIxFg65272kdMS58",
     "sync": false
   },
   {
@@ -406,9 +406,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "0eHyEAIg5CRLwPohej1ImD",
+    "fileId": "4eIMufIA1L7rNTNjw86UVh",
     "sync": false
   },
   {
@@ -505,9 +505,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "57j0qqZVROnK1to03LDodY",
+    "fileId": "c8wjXRNzpDo4oIU51w/fXx",
     "sync": false
   },
   {
@@ -604,9 +604,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "58YXqrwA5I3ZbuBIlQO0oa",
+    "fileId": "32f9v5PQxOOoxYUV+hMm0I",
     "sync": false
   },
   {
@@ -706,9 +706,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "c2w8c7dBBFGYu5b4cRVwH3",
+    "fileId": "3f/rfLsvZP7K7pcEYVBw+F",
     "sync": false
   },
   {
@@ -805,9 +805,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "44yqVnbrRLnoNDSH+/fuik",
+    "fileId": "8buD2/CCBFg7B2ALCSx5y4",
     "sync": false
   },
   {
@@ -942,9 +942,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "06eVgAtY1EuK7WBn/9BovN",
+    "fileId": "2e4d0uHW5KuYwvX/TS8cfw",
     "sync": false
   },
   {
@@ -1041,9 +1041,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "3beQmHQDNA9Jj04y1O9eJY",
+    "fileId": "e4Bh/8EGlKB5d1bPGqV9a/",
     "sync": false
   },
   {
@@ -1140,9 +1140,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "761EN3MPlIj5Da6UvjCHmF",
+    "fileId": "ebw0YfeqBFTrDwTtrknYLB",
     "sync": false
   },
   {
@@ -1239,9 +1239,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "40IpMlItxM2I98Hbt/61mO",
+    "fileId": "924+P1RxdM/aATc+h+qBLR",
     "sync": false
   },
   {
@@ -1338,9 +1338,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "e0JYQ4Q65Bc6ZzklZxN/U9",
+    "fileId": "53JJEpX/RGYqmnllkwwfGW",
     "sync": false
   },
   {
@@ -1507,9 +1507,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "a6AQBrCrVG1YXgqVsOlJPM",
+    "fileId": "19FgFDFy9PNYKjqWInGgnz",
     "sync": false
   },
   {
@@ -1611,9 +1611,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "edmEyCVVhFDqFs6X0/77n9",
+    "fileId": "56iEYENllLhJeoPT3628iC",
     "sync": false
   },
   {
@@ -1629,7 +1629,7 @@
     "_spriteFrame": {
       "__uuid__": "29158224-f8dd-4661-a796-1ffab537140e"
     },
-    "_type": 0,
+    "_type": 1,
     "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
@@ -1684,9 +1684,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "74cc5f6b-24ca-4247-9770-e47a6e3ed9da"
+      "__id__": 0
     },
-    "fileId": "3fVQeDE4pBnp9X4/aBOK6s",
+    "fileId": "1f7SE+RvJPPqr2AR+/wAC3",
     "sync": false
   }
 ]

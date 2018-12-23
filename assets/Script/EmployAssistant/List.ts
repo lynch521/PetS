@@ -11,14 +11,10 @@ export default class List extends cc.Component {
     @property(cc.Prefab)
     item:cc.Prefab = null;
    
-    items:cc.Node[] = [];
+    //items:cc.Node[] = [];
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        
-        
-        //this.loadAssistant();
-
         this.initListData();
     }
 
@@ -37,16 +33,14 @@ export default class List extends cc.Component {
     random(min:number,max:number){
         return min+Math.floor(Math.random()*(max-min+1));
     }
-
+    
     saveAssistant(assistantData){
         
     }
 
 
-    public refresh(){
-        
-        this.getComponent(cc.ScrollView).content.removeAllChildren();
-        
+    public refresh(){        
+        this.getComponent(cc.ScrollView).content.removeAllChildren();        
         this.initListData();
     }
 

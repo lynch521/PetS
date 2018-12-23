@@ -7,7 +7,7 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export class Assistant extends cc.Component {
 
-    assistandData ={
+    assistantData ={
         assistant_id: 0 ,
         assistant_name: "默认",
         assistant_icon:"assistant001",
@@ -19,6 +19,8 @@ export class Assistant extends cc.Component {
         assistant_knowledge:0,
         assistant_skill:[],
     };
+
+    static currentassistant = []; //储存当前已经雇佣的店员
 
     private namepool:string[] = [];
     private skillpool:number[] = []; 
@@ -36,8 +38,8 @@ export class Assistant extends cc.Component {
         for(let i in JsonConfig.getAllItem(ConfigType.Randompool)){
             
             if(JsonConfig.getAllItem(ConfigType.Randompool)[i].Randompool!="NA"){//尾部NA舍去
-                console.log(i);
-                console.log(JsonConfig.getAllItem(ConfigType.Randompool)[i].random_name);
+                //console.log(i);
+                //console.log(JsonConfig.getAllItem(ConfigType.Randompool)[i].random_name);
                 this.namepool.push(JsonConfig.getAllItem(ConfigType.Randompool)[i].random_name);
             }
         }
@@ -45,8 +47,8 @@ export class Assistant extends cc.Component {
         for(let i in JsonConfig.getAllItem(ConfigType.Randompool)){
             
             if(JsonConfig.getAllItem(ConfigType.Randompool)[i].random_icon!="NA"){//尾部NA舍去
-                console.log(i);
-                console.log(JsonConfig.getAllItem(ConfigType.Randompool)[i].random_icon);
+                //console.log(i);
+                //console.log(JsonConfig.getAllItem(ConfigType.Randompool)[i].random_icon);
                 this.iconpool.push(JsonConfig.getAllItem(ConfigType.Randompool)[i].random_icon);
             }
         }        
@@ -54,23 +56,35 @@ export class Assistant extends cc.Component {
         this.skillpool = Skill.getAllSkillid();     
     }
 
+    static employAssistant(assistantData){
+        
+        
+        
+        this.currentassistant.push(assistantData);
+        return 
+    }
+
+    static getCurrentAssistant(){
+        return this.currentassistant;
+    }
+
     public newAssistant(){//生成新雇员信息
         this.LoadRandom();
-        this.assistandData.assistant_id = 0;//临时ID不能直接储存
-        this.assistandData.assistant_name = this.namepool[this.random(0,this.namepool.length-1)];
-        this.assistandData.assistant_icon = this.iconpool[this.random(0,this.iconpool.length-1)];
-        this.assistandData.assistant_lvl = this.beginning_assistant_lvl;
-        this.assistandData.assistant_exp = this.beginning_assistant_exp;
-        this.assistandData.assistant_eloquence = this.random(this.min_beginning_assistant_property,this.max_beginning_assistant_property);
-        this.assistandData.assistant_intelligence = this.random(this.min_beginning_assistant_property,this.max_beginning_assistant_property);
-        this.assistandData.assistant_knowledge = this.random(this.min_beginning_assistant_property,this.max_beginning_assistant_property);
-        this.assistandData.assistant_operation = this.random(this.min_beginning_assistant_property,this.max_beginning_assistant_property);
-        this.assistandData.assistant_skill = [];
+        this.assistantData.assistant_id = 0;//临时ID不能直接储存
+        this.assistantData.assistant_name = this.namepool[this.random(0,this.namepool.length-1)];
+        this.assistantData.assistant_icon = this.iconpool[this.random(0,this.iconpool.length-1)];
+        this.assistantData.assistant_lvl = this.beginning_assistant_lvl;
+        this.assistantData.assistant_exp = this.beginning_assistant_exp;
+        this.assistantData.assistant_eloquence = this.random(this.min_beginning_assistant_property,this.max_beginning_assistant_property);
+        this.assistantData.assistant_intelligence = this.random(this.min_beginning_assistant_property,this.max_beginning_assistant_property);
+        this.assistantData.assistant_knowledge = this.random(this.min_beginning_assistant_property,this.max_beginning_assistant_property);
+        this.assistantData.assistant_operation = this.random(this.min_beginning_assistant_property,this.max_beginning_assistant_property);
+        this.assistantData.assistant_skill = [];
             for(let i= 0; i < this.beginning_assistant_skill_amount;i++){
-                this.assistandData.assistant_skill.push(this.skillpool[this.random(0,this.skillpool.length-1)]); 
+                this.assistantData.assistant_skill.push(this.skillpool[this.random(0,this.skillpool.length-1)]); 
             }       
 
-        return this.assistandData;
+        return this.assistantData;
     }
 
 

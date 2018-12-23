@@ -40,16 +40,8 @@ export class Assistant{
     //以上为本类使用的临时参数
 
 
-    
-
-
-
-    static fireAssistant(id:number){
-
-    }
-
-
     constructor (){//生成新雇员信息
+                
         this.loadRandom();
         this.assistant_id = AssistantList.getNewId();
         this.assistant_name = this.namepool[this.random(0,this.namepool.length-1)];
@@ -63,11 +55,18 @@ export class Assistant{
         this.assistant_skill = [];
             for(let i= 0; i < this.beginning_assistant_skill_amount;i++){
                 this.assistant_skill.push(this.skillpool[this.random(0,this.skillpool.length-1)]); 
-            }         
+            }      
+          
+    }
+
+    public employassistant(){
+        AssistantList.addAssistant(this);
     }
 
 
-
+    public fireassistant(){
+        AssistantList.redAssistant(this);
+    }
 
 
 

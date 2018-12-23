@@ -32,11 +32,18 @@ export default class NewResume extends cc.Component {
     @property(cc.Prefab)
     skillnode: cc.Prefab = null;
 
+    newassistant:Assistant;
+
 
 
 
     public showAssistantresume(assistant:Assistant) {
         // 展示员工信息     
+        
+        if(this.node.parent.name=="listcontent"){
+            this.node.getChildByName("button").destroy();
+        }
+        
         let icon:cc.Sprite = this.icon;
 
         cc.loader.loadRes(assistant.assistant_icon, cc.SpriteFrame, function (err, spriteFrame) {
@@ -65,13 +72,21 @@ export default class NewResume extends cc.Component {
         }
             
     }
-    
+
+
+
+    public chooseassistant(){
+
+        this.newassistant.employassistant();
+        this.node.destroy();
+    }
 
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-             
+        this.newassistant = new Assistant;
+        this.showAssistantresume(this.newassistant);  
         //this.showAssistantresume(this.assistant);
         //this.icon.spriteFrame = new cc.SpriteFrame(cc.url.raw('Texture/assistant/assistant002.jpg'));
 

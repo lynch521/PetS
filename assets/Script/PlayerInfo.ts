@@ -1,3 +1,6 @@
+import { Assistant } from "./Assistant";
+import { AssistantManager } from "./AssistantManager";
+
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/typescript.html
@@ -7,76 +10,34 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-import {AssistantList} from './AssistantList';
 
 export class PlayerInfo {
 
-    //单例
+    /**单例 */
     private static ins : PlayerInfo;
 
-    //jsonObj 玩家信息的json形式
-    jsonObj:any = {};
-
-    //商店名字
-    private _shopName:string;
-    //当前回合
-    private _currentRound:number;
-    //职工数据
-    private _assistantList:any[];
-    //金币
-    private _gold:number;
-
+    /**商店名字 */
+    shopName:string;
+    /**当前回合 */
+    currentRound:number;
+    /**金币 */
+    gold:number;
+  
     private constructor()
     {
        
     }
 
-    //----------------------------getter setter----------------------------
-    set shopName(shopName:string)
+    toJson():any
     {
-        PlayerInfo.ins._shopName = shopName;
-        this.jsonObj.shopName = shopName;
+   
+        return {
+            shopName:this.shopName,
+            currentRound:this.currentRound,
+            gold:this.gold,
+            assistantManager:AssistantManager.toJson()
+        }
     }
-    
-    get shopName():string
-    {
-        return this._shopName;
-    }
-
-    set gold(gold:number)
-    {
-        PlayerInfo.ins._gold = gold;
-        this.jsonObj.gold = gold;
-    }
-
-    get gold():number
-    {
-        return this._gold;
-    }
-
-    set currentRound(currentRound:number)
-    {
-        PlayerInfo.ins._currentRound = currentRound;
-        this.jsonObj.currentRound = currentRound;
-    }
-
-    get currentRound():number
-    {
-        return this._currentRound;
-    }
-
-    set assistantList(assistantList:any[])
-    {
-        PlayerInfo.ins._assistantList = assistantList;
-        this.jsonObj.assistantList = assistantList;
-    }
-
-    get assistantList():any[]
-    {
-        return this._assistantList;
-    }
-
-    //----------------------------getter setter----------------------------
 
     /**
      * 获取playerinfo的单例
@@ -98,7 +59,8 @@ export class PlayerInfo {
         this.shopName = "";
         this.gold = 0;
         this.currentRound = 1;
-        this.assistantList = new Array<any>();
+
+     
     }
 
     /**
@@ -107,7 +69,7 @@ export class PlayerInfo {
     savePlayerInfo():void
     {
         //转换成string并存储
-        let jsonString:string = JSON.stringify(this.jsonObj);
+        let jsonString:string = JSON.stringify(this.toJson());
         cc.sys.localStorage.setItem("playerInfo",jsonString);
     }
 
@@ -120,13 +82,13 @@ export class PlayerInfo {
         if(playerInfo)
         {
             //json字符串转obj
-            this.jsonObj = JSON.parse(playerInfo);
+            let jsonObj:any = JSON.parse(playerInfo);
             //转换成 playerinfo类实例
-            PlayerInfo.ins.shopName = this.jsonObj.shopName;
-            PlayerInfo.ins.currentRound = this.jsonObj.currentRound as number;
-            PlayerInfo.ins.gold = this.jsonObj.gold as number;
-            PlayerInfo.ins.assistantList = this.jsonObj.assistantList;
-
+            PlayerInfo.ins.shopName = jsonObj.shopName;
+            PlayerInfo.ins.currentRound = jsonObj.currentRound as number;
+            PlayerInfo.ins.gold = jsonObj.gold as number;
+            AssistantManager.initWithJson(jsonObj.assistantManager);
+            
             return PlayerInfo.ins;
         }
         else

@@ -1,7 +1,7 @@
 import {JsonConfig,ConfigType} from './JsonConfig'
 import {Skill} from './Skill' 
 import {Assistant} from './Assistant' 
-import { AssistantList } from './AssistantList';
+import { AssistantManager } from './AssistantManager';
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -32,11 +32,11 @@ export default class ResumeList extends cc.Component {
 
     showlist (){
         this.node.getChildByName("scrollview").active = true;
-        for (let i in AssistantList.getCurrentAssistantList()){
+        for (let i in AssistantManager.getCurrentAssistantList()){
             let mItemPrefab = cc.instantiate(this.item);
             mItemPrefab.getChildByName("button").active =false;
             this.getComponentInChildren(cc.ScrollView).content.addChild(mItemPrefab);
-            mItemPrefab.getComponent("NewResume").showAssistantresume(AssistantList.getCurrentAssistantList()[i]);
+            mItemPrefab.getComponent("NewResume").showAssistantresume(AssistantManager.getCurrentAssistantList()[i]);
             }
     }
 

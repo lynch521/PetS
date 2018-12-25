@@ -1,11 +1,10 @@
 import {JsonConfig,ConfigType} from './JsonConfig'
 import {Skill} from './Skill' 
-import {AssistantList} from './AssistantList'
+import {AssistantManager} from './AssistantManager'
 
 
-export class Assistant{
-
-    
+export class Assistant {
+   
     assistant_id:number; //id 主键，由AssistantList的方法递增生成，在AssistantList类中存储累计值
     assistant_name: string; //员工姓名
     assistant_icon: string; //员工头像
@@ -19,24 +18,6 @@ export class Assistant{
     assistant_locality:number = 0;//雇员所在建筑的位置 为0的话不在任何地方
     assistant_task:number = 0;//雇员所进行的工作，特指科技开发 为0的话未进行任何开发
     //以上内容为玩家信息，需要存储
-
-
-    json = {
-        assistant_id:0,//id 主键，由AssistantList的方法递增生成，在AssistantList类中存储累计值
-        assistant_name:"0", //员工姓名
-        assistant_icon:"", //员工头像
-        assistant_lvl:0, //员工当前等级
-        assistant_exp:0,//员工当前经验
-        assistant_intelligence:0,//主属性，聪敏
-        assistant_eloquence:0,//主属性，口才
-        assistant_operation:0,//主属性，操作
-        assistant_knowledge:0,//主属性，知识
-        assistant_skill:[],//储存技能ID的数组，无顺序
-        assistant_locality:0,//雇员所在建筑的位置 为0的话不在任何地方
-        assistant_task:0,//雇员所进行的工作，特指科技开发 为0的话未进行任何开发
-        };
-
-
 
     private min_beginning_assistant_property = 1; //属性随机最小值
     private max_beginning_assistant_property = 20; //属性随机最大值
@@ -54,24 +35,24 @@ export class Assistant{
     private iconpool:string[] = []; //随机头像池
     //以上为本类使用的临时参数
 
-
     constructor (json:any = null){//生成新雇员信息
         if(json){
             this.assistant_id = json.assistant_id;
             this.assistant_name = json.assistant_name ;
-            this.assistant_icon =json.assistant_icon;
-            this.assistant_lvl =json.assistant_lvl;
+            this.assistant_icon = json.assistant_icon;
+            this.assistant_lvl = json.assistant_lvl;
             this.assistant_exp = json.assistant_exp;
             this.assistant_eloquence = json.assistant_eloquence;
             this.assistant_intelligence = json.assistant_intelligence;
             this.assistant_knowledge = json.assistant_knowledge;
             this.assistant_operation = json.assistant_operation;
             this.assistant_skill = json.assistant_skill;
+            this.assistant_locality = json.assistant_locality;
         } 
         else
         {
             this.loadRandom();
-            this.assistant_id = AssistantList.getNewId();
+            this.assistant_id = AssistantManager.getNewId();
             this.assistant_name = this.namepool[this.random(0,this.namepool.length-1)];
             this.assistant_icon = this.iconpool[this.random(0,this.iconpool.length-1)];
             this.assistant_lvl = this.beginning_assistant_lvl;
@@ -81,24 +62,44 @@ export class Assistant{
             this.assistant_knowledge = this.random(this.min_beginning_assistant_property,this.max_beginning_assistant_property);
             this.assistant_operation = this.random(this.min_beginning_assistant_property,this.max_beginning_assistant_property);
             this.assistant_skill = [];
-                for(let i= 0; i < this.beginning_assistant_skill_amount;i++){
-                    this.assistant_skill.push(this.skillpool[this.random(0,this.skillpool.length-1)]); 
-                }     
+            for(let i= 0; i < this.beginning_assistant_skill_amount;i++){
+                this.assistant_skill.push(this.skillpool[this.random(0,this.skillpool.length-1)]); 
+            }
+            this.assistant_locality = 0;
+            this.assistant_task = 0;  
         } 
          
           
+    }
+
+    toJson():any
+    {
+        return {
+            assistant_id:this.assistant_id,
+            assistant_name:this.assistant_name,
+            assistant_icon:this.assistant_icon,
+            assistant_lvl:this.assistant_lvl,
+            assistant_exp:this.assistant_exp,
+            assistant_eloquence:this.assistant_eloquence,
+            assistant_intelligence:this.assistant_intelligence,
+            assistant_knowledge:this.assistant_knowledge,
+            assistant_operation:this.assistant_operation,
+            assistant_skill:this.assistant_skill,
+            assistant_locality:this.assistant_locality,
+            assistant_task:this.assistant_task
+        }
     }
 
 
 
 
     public employassistant(){
-        AssistantList.addAssistant(this);
+        AssistantManager.addAssistant(this);
     }
 
 
     public fireassistant(){
-        AssistantList.redAssistant(this);
+        AssistantManager.redAssistant(this);
     }
 
 

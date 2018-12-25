@@ -16,7 +16,7 @@ export class AssistantManager{
     {
         for(let i in jsonObj.assistantList)
         {
-            let ass : Assistant = new Assistant(jsonObj.assistantLis[i]);
+            let ass : Assistant = new Assistant(jsonObj.assistantList[i]);
             AssistantManager.currentassistant.push(ass);
         }
 

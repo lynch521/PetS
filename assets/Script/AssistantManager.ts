@@ -1,7 +1,7 @@
 import {JsonConfig,ConfigType} from './JsonConfig'
 import {Skill} from './Skill' 
 import {Assistant} from './Assistant' 
-
+import {PlayerInfo} from './PlayerInfo'
 
 export class AssistantManager{
 
@@ -43,6 +43,7 @@ export class AssistantManager{
     static addAssistant(assistant:Assistant){//将简历上的雇员进行雇佣，写入已雇佣员工表
         
         this.currentassistant.push(assistant);
+        PlayerInfo.getIns().savePlayerInfo();
 
     }
 

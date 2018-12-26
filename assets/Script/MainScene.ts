@@ -34,6 +34,7 @@ export default class MainScene extends cc.Component {
             this.shopNameEB.node.parent.active = true;
             this.shopNameEB.placeholder = "请输入你的宠物店名字";
         }
+        
     }
 
     start () {
@@ -62,7 +63,7 @@ export default class MainScene extends cc.Component {
         PlayerInfo.getIns().removePlayerInfo("playerInfo");
     }
 
-    private employassisstant(){
+    private openAssistantScene(){
         cc.director.loadScene("EmployAssistant");
     }
 

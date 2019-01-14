@@ -22,7 +22,11 @@ export class PlayerInfo {
     currentRound:number;
     /**金币 */
     gold:number;
-  
+    /**
+     * 人气
+     */
+    pop:number;
+
     private constructor()
     {
        
@@ -35,6 +39,7 @@ export class PlayerInfo {
             shopName:this.shopName,
             currentRound:this.currentRound,
             gold:this.gold,
+            pop:this.pop,
             assistantManager:AssistantManager.toJson()
         }
     }
@@ -59,8 +64,8 @@ export class PlayerInfo {
         this.shopName = "";
         this.gold = 0;
         this.currentRound = 1;
-
-     
+        this.pop = 0;
+        
     }
 
     /**
@@ -87,6 +92,7 @@ export class PlayerInfo {
             PlayerInfo.ins.shopName = jsonObj.shopName;
             PlayerInfo.ins.currentRound = jsonObj.currentRound as number;
             PlayerInfo.ins.gold = jsonObj.gold as number;
+            PlayerInfo.ins.pop = jsonObj.pop as number;
             AssistantManager.initWithJson(jsonObj.assistantManager);
             
             return PlayerInfo.ins;

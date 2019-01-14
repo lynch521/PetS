@@ -17,7 +17,14 @@ export default class MainScene extends cc.Component {
 
     @property(cc.EditBox)
     shopNameEB:cc.EditBox = null;
-
+    @property(cc.Label)
+    goldLbl:cc.Label = null;
+    @property(cc.Label)
+    popLbl:cc.Label = null;
+    @property(cc.Label)
+    shopNameLbl:cc.Label = null;
+    @property(cc.Label)
+    roundLbl:cc.Label = null;
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
@@ -27,6 +34,9 @@ export default class MainScene extends cc.Component {
         {
             //不显示名字输入框
             this.shopNameEB.node.parent.active = false;
+            //渲染玩家信息
+            this.shopNameLbl.string = PlayerInfo.getIns().shopName;
+            this.goldLbl.string = String(PlayerInfo.getIns().gold);
         }
         else
         {
@@ -67,5 +77,6 @@ export default class MainScene extends cc.Component {
         cc.director.loadScene("EmployAssistant");
     }
 
+    
 
 }

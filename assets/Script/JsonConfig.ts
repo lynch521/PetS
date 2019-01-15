@@ -8,6 +8,8 @@ export class JsonConfig
         "jsonConfig/skills",
         "jsonConfig/assistant",
         "jsonConfig/randompool",
+        "jsonConfig/tbl_counter",
+        "jsonConfig/tbl_service",
     ];
 
     static Config:any[] = [];
@@ -48,4 +50,6 @@ export enum ConfigType {
     Skills,
     Assisitant,
     Randompool,
+    Counter,
+    Service,
 };

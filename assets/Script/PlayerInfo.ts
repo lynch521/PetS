@@ -1,5 +1,6 @@
 import { Assistant } from "./Assistant";
 import { AssistantManager } from "./AssistantManager";
+import { CounterManager } from "./CounterManager";
 
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -40,7 +41,8 @@ export class PlayerInfo {
             currentRound:this.currentRound,
             gold:this.gold,
             pop:this.pop,
-            assistantManager:AssistantManager.toJson()
+            assistantInfo:AssistantManager.toJson(),
+            counterInfo:CounterManager.getIns().toJson(),
         }
     }
 
@@ -93,7 +95,8 @@ export class PlayerInfo {
             PlayerInfo.ins.currentRound = jsonObj.currentRound as number;
             PlayerInfo.ins.gold = jsonObj.gold as number;
             PlayerInfo.ins.pop = jsonObj.pop as number;
-            AssistantManager.initWithJson(jsonObj.assistantManager);
+            AssistantManager.initWithJson(jsonObj.assistantInfo);
+            CounterManager.getIns().initWithJson(jsonObj.counterInfo);
             
             return PlayerInfo.ins;
         }

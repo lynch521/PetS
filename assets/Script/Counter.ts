@@ -1,5 +1,6 @@
 import { Assistant } from "./Assistant";
 import { ConfigType, JsonConfig } from "./JsonConfig";
+import { PlayerInfo } from "./PlayerInfo";
 
 /**柜台类
  * 柜台决定提供的服务和售卖的商品
@@ -15,13 +16,20 @@ export class Counter {
      */
     serviceData:any = {};
     /**柜台上的职工 */
-    assistant:Assistant;
+    assistant_id:number;
 
-    constructor(json:any = null,type:number)
+    /**
+     * 柜台构造函数
+     * @param json json数据
+     * @param type 柜台类型 0 是服务型柜台 1是商品型柜台
+     */
+    constructor(json:any = null,type?:number)
     {
         if(json)
         {
-
+            this.tempID = json.tempID;
+            this.serviceData = json.serviceData;
+            this.assistant_id = json.assistant_id;
         }
         else
         {
@@ -42,16 +50,84 @@ export class Counter {
         }
     }
 
+    /**
+     * 转成json对象
+     */
+    toJson():any
+    {
+        return {
+            tempID:this.tempID,
+            serviceData:this.serviceData,
+            assistant_id:this.assistant_id,
+        }
+    }
+
+
     /**商品自动补货*/
     autoReplenishment():void {
-        
+        //TODO ConfigType还未修改
         let counterConfig:any = JsonConfig.getItem(ConfigType.Assisitant,this.tempID);
         let storage:number = counterConfig.storage;
 
+        let totalCost:number = 0;
         for(let i in this.serviceData)
         {           
             let serviceConfig:any = JsonConfig.getItem(ConfigType.Assisitant,Number(i));
+            let price:number = Number(serviceConfig.price);
+            let storage:number = Number(this.serviceData[i].storage);
+            let max:number = Number(this.serviceData[i].max);
+
+            totalCost += (max - storage)*price;
+            //更新数据
+            this.serviceData[i].storage = this.serviceData[i].max;
         }
+
+        //扣钱
+        PlayerInfo.getIns().gold -= totalCost;
+        
+    }
+
+    /**
+     * 可设置的商品库存上限
+     * @param serviceId 商品id
+     */
+    getStorageMax(serviceId:number):number {
+
+        let max:number;
+        //TODO ConfigType还未修改
+        let counterConfig:any = JsonConfig.getItem(ConfigType.Assisitant,this.tempID);
+        //获得柜台的库存上限
+        let storageMax:number = counterConfig.storage;
+        //现有商品的负重
+        let totalWeight:number;
+        for(let i in this.serviceData)
+        {           
+            let serviceConfig:any = JsonConfig.getItem(ConfigType.Assisitant,Number(i));
+            let weight:number = Number(serviceConfig.weight);
+            let storage:number = Number(this.serviceData[i].storage);
+            
+            totalWeight += storage*weight;
+        }
+
+        let serConfig:any = JsonConfig.getItem(ConfigType.Assisitant,serviceId);
+        max = Math.floor((storageMax - totalWeight)/Number(serConfig.weight));
+
+        return max;
+        
+    }
+
+    /**
+     * 设置商品上限
+     * @param serviceId 商品id
+     * @param max 设置的某商品的库存上限
+     */
+    setStorageMax(serviceId:number,max:number):void {
+        this.serviceData[serviceId].max = max;
+    }
+
+    /**商品自动售卖*/
+    autoSellProduct():void {
+
         
     }
 }

@@ -16,11 +16,32 @@ export class CounterManager {
     private static ins : CounterManager;
 
     /**柜台列表 */
-    _CounterList:Counter[] = [];
+    counterList:Counter[] = [];
 
     private constructor()
     {
        
+    }
+
+    initWithJson(jsonObj:any):void
+    {
+        for(let i in jsonObj.counterList)
+        {
+            let counter : Counter = new Counter(jsonObj.counterList[i]);
+            this.counterList.push(counter);
+        }
+    }
+
+    toJson():any
+    {
+        let jsonObj:any[] = [];
+        for(let i in this.counterList)
+        {
+            jsonObj.push(this.counterList[i].toJson());
+        }
+        return {
+            counterList:jsonObj,
+        };
     }
 
     /**

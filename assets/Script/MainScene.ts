@@ -9,6 +9,10 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 import {PlayerInfo} from './PlayerInfo';
+import { Counter } from './Counter';
+import { CounterManager } from './CounterManager';
+import CounterItem from './CounterItem';
+import { JsonConfig, ConfigType } from './JsonConfig';
 
 const {ccclass, property} = cc._decorator;
 
@@ -25,6 +29,10 @@ export default class MainScene extends cc.Component {
     shopNameLbl:cc.Label = null;
     @property(cc.Label)
     roundLbl:cc.Label = null;
+    @property(cc.Node)
+    counterGrid:cc.Node = null;
+    @property(cc.Prefab)
+    counterItem:cc.Prefab = null;
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
@@ -34,9 +42,8 @@ export default class MainScene extends cc.Component {
         {
             //不显示名字输入框
             this.shopNameEB.node.parent.active = false;
-            //渲染玩家信息
-            this.shopNameLbl.string = PlayerInfo.getIns().shopName;
-            this.goldLbl.string = String(PlayerInfo.getIns().gold);
+            //渲染界面
+            this.updateUI();
         }
         else
         {
@@ -66,6 +73,38 @@ export default class MainScene extends cc.Component {
         PlayerInfo.getIns().savePlayerInfo();
         //隐藏输入界面
         this.shopNameEB.node.parent.active = false;
+        //渲染界面
+        this.updateUI();
+    }
+
+    /**
+     * 渲染界面
+     */
+    updateUI():void 
+    {
+        //渲染玩家信息
+        this.shopNameLbl.string = "名字：" + PlayerInfo.getIns().shopName;
+        this.goldLbl.string = "金币：" + PlayerInfo.getIns().gold;
+        this.popLbl.string = "人气：" + PlayerInfo.getIns().pop;
+        this.roundLbl.string = "回合：" + PlayerInfo.getIns().currentRound;
+        //渲染柜台列表
+        this.updateCounterList();
+    }
+
+    /**
+     * 渲染柜台列表
+     */
+    private updateCounterList():void {
+        
+        let counterList:Counter[] = CounterManager.getIns().counterList;
+        
+        for(let i in counterList)
+        {
+            let counterTemp:any = JsonConfig.getItem(ConfigType.Counter,counterList[i].tempID);
+            let counterNode:cc.Node = cc.instantiate(this.counterItem);
+            counterNode.getComponent(CounterItem).updateUI(counterTemp.name);
+            this.counterGrid.addChild(counterNode,1,"counter_" + i);
+        }
     }
 
     private removeData(event:Event):void

@@ -67,7 +67,8 @@ export class PlayerInfo {
         this.gold = 0;
         this.currentRound = 1;
         this.pop = 0;
-        
+        //默认给一个柜台
+        CounterManager.getIns().addCounter(1);
     }
 
     /**

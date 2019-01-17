@@ -21,9 +21,9 @@ export class Counter {
     /**
      * 柜台构造函数
      * @param json json数据
-     * @param type 柜台类型 0 是服务型柜台 1是商品型柜台
+     * @param tempID 柜台模板ID
      */
-    constructor(json:any = null,type?:number)
+    constructor(json:any = null,tempID?:number)
     {
         if(json)
         {
@@ -31,22 +31,27 @@ export class Counter {
             this.serviceData = json.serviceData;
             this.assistant_id = json.assistant_id;
         }
-        else
+        else if(tempID)
         {
-            switch(type)
+            this.tempID = tempID;
+            let counterTemp:any = JsonConfig.getItem(ConfigType.Counter,tempID);
+            switch(counterTemp.type)
             {
                 case 0:
                     break;
                 case 1:
-                    let counterConfig:any = JsonConfig.getItem(ConfigType.Assisitant,this.tempID);
+                    let counterConfig:any = JsonConfig.getItem(ConfigType.Counter,this.tempID);
                     let serviceList:string[] = (counterConfig.serviceList as string).split("|");
                     for(let i=0;i<serviceList.length;i++)
                     {
                         let key = Number(serviceList[i]);
-                        this.serviceData = {key:{storage:0,max:0}};
+                        this.serviceData[key] = {storage:0,max:0};
                     }
                     break;
             }  
+        }
+        else{
+            console.log("Counter参数错误");
         }
     }
 
@@ -65,14 +70,13 @@ export class Counter {
 
     /**商品自动补货*/
     autoReplenishment():void {
-        //TODO ConfigType还未修改
-        let counterConfig:any = JsonConfig.getItem(ConfigType.Assisitant,this.tempID);
+        let counterConfig:any = JsonConfig.getItem(ConfigType.Counter,this.tempID);
         let storage:number = counterConfig.storage;
 
         let totalCost:number = 0;
         for(let i in this.serviceData)
         {           
-            let serviceConfig:any = JsonConfig.getItem(ConfigType.Assisitant,Number(i));
+            let serviceConfig:any = JsonConfig.getItem(ConfigType.Counter,Number(i));
             let price:number = Number(serviceConfig.price);
             let storage:number = Number(this.serviceData[i].storage);
             let max:number = Number(this.serviceData[i].max);
@@ -94,22 +98,21 @@ export class Counter {
     getStorageMax(serviceId:number):number {
 
         let max:number;
-        //TODO ConfigType还未修改
-        let counterConfig:any = JsonConfig.getItem(ConfigType.Assisitant,this.tempID);
+        let counterConfig:any = JsonConfig.getItem(ConfigType.Counter,this.tempID);
         //获得柜台的库存上限
         let storageMax:number = counterConfig.storage;
         //现有商品的负重
         let totalWeight:number;
         for(let i in this.serviceData)
         {           
-            let serviceConfig:any = JsonConfig.getItem(ConfigType.Assisitant,Number(i));
+            let serviceConfig:any = JsonConfig.getItem(ConfigType.Counter,Number(i));
             let weight:number = Number(serviceConfig.weight);
             let storage:number = Number(this.serviceData[i].storage);
             
             totalWeight += storage*weight;
         }
 
-        let serConfig:any = JsonConfig.getItem(ConfigType.Assisitant,serviceId);
+        let serConfig:any = JsonConfig.getItem(ConfigType.Counter,serviceId);
         max = Math.floor((storageMax - totalWeight)/Number(serConfig.weight));
 
         return max;

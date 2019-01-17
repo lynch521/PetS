@@ -20,7 +20,7 @@ export class CounterManager {
 
     private constructor()
     {
-       
+        
     }
 
     initWithJson(jsonObj:any):void
@@ -54,5 +54,16 @@ export class CounterManager {
        }
 
        return CounterManager.ins;
+   }
+
+   /**
+    * 新增柜台
+    * @param tempId 柜台类id
+    */
+   addCounter(tempId:number):Counter
+   {
+        let counter:Counter = new Counter(null,tempId);
+        this.counterList.push(counter);
+        return counter;
    }
 }

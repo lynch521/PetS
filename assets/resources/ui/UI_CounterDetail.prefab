@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "CounterItem",
+    "_name": "UI_CounterDetail",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -175,7 +175,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "12a257f4-61ae-4e90-8210-7d0a0b731304"
+      "__uuid__": "8662cda4-1b9c-4825-94cb-08c9768a0f03"
     },
     "fileId": "74rKX2XGlNvqwI7X24oN9j",
     "sync": false
@@ -284,7 +284,6 @@
     "counterName": {
       "__id__": 3
     },
-    "text": "hello",
     "_id": ""
   },
   {
@@ -293,7 +292,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "12a257f4-61ae-4e90-8210-7d0a0b731304"
+      "__uuid__": "8662cda4-1b9c-4825-94cb-08c9768a0f03"
     },
     "fileId": "efap7AjYxPzYtCF4vH+X+R",
     "sync": false

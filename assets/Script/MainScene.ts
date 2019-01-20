@@ -13,6 +13,7 @@ import { Counter } from './Counter';
 import { CounterManager } from './CounterManager';
 import CounterItem from './CounterItem';
 import { JsonConfig, ConfigType } from './JsonConfig';
+import { UIManager, UIType } from './UIManager';
 
 const {ccclass, property} = cc._decorator;
 
@@ -105,6 +106,19 @@ export default class MainScene extends cc.Component {
             counterNode.getComponent(CounterItem).updateUI(counterTemp.name);
             this.counterGrid.addChild(counterNode,1,"counter_" + i);
         }
+    }
+    
+    /**
+     * 增加柜台
+     * @param tempID 柜台模板id
+     */
+    private addCounter(event:Event,tempID:string):void {
+        
+    }
+
+    private openCounterListUI():void
+    {
+        UIManager.openUI(UIType.UI_CounterList);
     }
 
     private removeData(event:Event):void

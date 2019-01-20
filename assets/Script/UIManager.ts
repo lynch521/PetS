@@ -3,10 +3,10 @@
  */
 export class UIManager {
 
-    static uiList : any[];
-    static cacheUIList : any[];
+    static uiList : any[] = [];
+    static cacheUIList : any[] = [];
 
-    static openUI(uiType:UIType, callBack:Function):void {
+    static openUI(uiType:UIType, callBack:Function = null):void {
         // 缓存--
         for (var i = 0; i < this.cacheUIList.length; i++) {
             var temp = this.cacheUIList[i];
@@ -50,10 +50,10 @@ export class UIManager {
                 callBack(temp);
             }
             
-        });
+        }.bind(this));
     }
 
-    static closeUI(uiType:UIType, callBack:Function):void {
+    static closeUI(uiType:UIType, callBack:Function = null):void {
         for (var i = this.uiList.length - 1; i >= 0; i--) {
             var temp = this.uiList[i];
             if (temp && temp.name === UIType[uiType]) {
@@ -90,4 +90,5 @@ export class UIManager {
  */
 export enum UIType {
     UI_CounterDetail,//柜台详情界面
+    UI_CounterList,//可创建柜台的列表
 }

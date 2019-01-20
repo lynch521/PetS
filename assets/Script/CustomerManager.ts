@@ -51,7 +51,7 @@ public static  MainProcess() {  //总流程
     
     for (let i = 0; i < this.customerGroup.length;i++){
 
-        //按照宠物循环
+        
         
         
 
@@ -75,6 +75,9 @@ public static  MainProcess() {  //总流程
         }
 
 
+        //显示流失情况
+
+
     }
 
 
@@ -88,9 +91,11 @@ public static  MainProcess() {  //总流程
     if(delList.length!=0){
         for(let i = delList.length - 1 ; i >= 0; i--){
             this.delCustomerGroup(delList[i]);
-        }
-        console.log("流失顾客"+delList.length+"名，剩余"+this.customerGroup.length+"名");
+        }        
     }
+    
+    console.log("流失顾客"+delList.length+"名，剩余"+this.customerGroup.length+"名");
+
 }
 
 

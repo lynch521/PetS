@@ -1,4 +1,6 @@
 import { Counter } from "./Counter";
+import { UIManager, UIType } from "./UIManager";
+import UI_CounterDetail from "./UI_CounterDetail";
 
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -18,6 +20,10 @@ export default class CounterItem extends cc.Component {
     @property(cc.Label)
     counterName: cc.Label = null;
 
+    counterInfo:Counter;
+    index:number;
+    
+
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -30,9 +36,22 @@ export default class CounterItem extends cc.Component {
     /**
      * 更新界面
      */
-    updateUI(counterName:string):void {
+    updateUI(counterName:string,counter:Counter,index:number):void {
         this.counterName.string = counterName;
+        this.counterInfo = counter;
+        this.index = index;
     }
 
     // update (dt) {}
+
+    private openCounterDetailUI():void
+    {
+        UIManager.openUI(UIType.UI_CounterDetail,this.updateCounterDetailUI.bind(this));
+        
+    }
+
+    private updateCounterDetailUI():void
+    {
+        (UIManager.getUI(UIType.UI_CounterDetail) as cc.Node).getComponent(UI_CounterDetail).updateUI(this.counterInfo,this.index);
+    }
 }

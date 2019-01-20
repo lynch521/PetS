@@ -30,11 +30,11 @@
         "__id__": 6
       },
       {
-        "__id__": 7
+        "__id__": 8
       }
     ],
     "_prefab": {
-      "__id__": 8
+      "__id__": 9
     },
     "_opacity": 255,
     "_color": {
@@ -233,7 +233,11 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 7
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$normalColor": {
@@ -274,6 +278,15 @@
     "_id": ""
   },
   {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "CounterItem",
+    "handler": "openCounterDetailUI",
+    "customEventData": ""
+  },
+  {
     "__type__": "c47a9AsKGVOVIZk+InEQF2F",
     "_name": "",
     "_objFlags": 0,
@@ -284,7 +297,6 @@
     "counterName": {
       "__id__": 3
     },
-    "text": "hello",
     "_id": ""
   },
   {

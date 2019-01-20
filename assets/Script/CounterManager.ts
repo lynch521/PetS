@@ -1,4 +1,5 @@
 import { Counter } from "./Counter";
+import { PlayerInfo } from "./PlayerInfo";
 
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -64,6 +65,17 @@ export class CounterManager {
    {
         let counter:Counter = new Counter(null,tempId);
         this.counterList.push(counter);
+        PlayerInfo.getIns().savePlayerInfo();
         return counter;
+   }
+
+   /**
+    * 删除柜台
+    * @param index 柜台数组下标
+    */
+   deleteCounter(index:number):void
+   {
+        this.counterList.splice(index,1);
+        PlayerInfo.getIns().savePlayerInfo();
    }
 }

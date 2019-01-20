@@ -102,9 +102,19 @@ export default class MainScene extends cc.Component {
         for(let i in counterList)
         {
             let counterTemp:any = JsonConfig.getItem(ConfigType.Counter,counterList[i].tempID);
-            let counterNode:cc.Node = cc.instantiate(this.counterItem);
-            counterNode.getComponent(CounterItem).updateUI(counterTemp.name);
-            this.counterGrid.addChild(counterNode,1,"counter_" + i);
+            
+            if(Number(i) < this.counterGrid.childrenCount)
+            {
+                let counterNode:cc.Node = this.counterGrid.children[Number(i)];
+                counterNode.getComponent(CounterItem).updateUI(counterTemp.name,counterList[i],Number(i));
+            } 
+            else
+            {
+                let counterNode:cc.Node = cc.instantiate(this.counterItem);
+                counterNode.getComponent(CounterItem).updateUI(counterTemp.name,counterList[i],Number(i));
+                this.counterGrid.addChild(counterNode,1,"counter_" + i);
+            }
+            
         }
     }
     
@@ -115,6 +125,18 @@ export default class MainScene extends cc.Component {
     addCounter(tempID:number):void 
     {
         CounterManager.getIns().addCounter(tempID);
+        this.updateCounterList();
+    }
+    /**
+     * 删除柜台
+     * @param index 节点下标
+     */
+    deleteCounter(index:number):void
+    {
+        let node = this.counterGrid.children[index];
+        //删除节点
+        this.counterGrid.removeChild(node);
+        CounterManager.getIns().deleteCounter(index);
         this.updateCounterList();
     }
 

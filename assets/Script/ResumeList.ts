@@ -1,7 +1,8 @@
 import {JsonConfig,ConfigType} from './JsonConfig'
 import {Skill} from './Skill' 
 import {Assistant} from './Assistant' 
-import { AssistantManager } from './AssistantManager';
+import { AssistantManager } from './AssistantManager'
+import { CustomerManager } from './CustomerManager'
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -18,6 +19,8 @@ export default class ResumeList extends cc.Component {
     onLoad () {
         this.node.getChildByName("scrollview").active =false;
         this.initResumeData();
+
+
     }
 
     
@@ -49,6 +52,7 @@ export default class ResumeList extends cc.Component {
     public refresh(){        
         this.getComponent(cc.ScrollView).content.removeAllChildren();        
         this.initResumeData();
+        CustomerManager.MainProcess();
     }
 
 

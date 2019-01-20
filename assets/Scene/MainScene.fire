@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.6359375,
-      "y": 0.6359375,
+      "x": 0.3146238262089607,
+      "y": 0.3146238262089607,
       "z": 1
     },
     "_quat": {
@@ -94,7 +94,7 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 51
+        "__id__": 46
       }
     ],
     "_prefab": null,
@@ -745,7 +745,7 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 44
+        "__id__": 45
       }
     ],
     "_prefab": null,
@@ -1004,6 +1004,9 @@
     "clickEvents": [
       {
         "__id__": 22
+      },
+      {
+        "__id__": 44
       }
     ],
     "_N$interactable": true,
@@ -2000,6 +2003,13 @@
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0,
     "_id": "a44QadAvFDu4j2+wlbHAkH"
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": null,
+    "component": "",
+    "handler": "",
+    "customEventData": ""
   },
   {
     "__type__": "cc.Layout",

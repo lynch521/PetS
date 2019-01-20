@@ -1,5 +1,6 @@
 import {Customer} from './Customer'
 import { PlayerInfo } from './PlayerInfo'
+import { ToolsClass } from './ToolsClass';
 
 export  class CustomerManager {
 
@@ -46,14 +47,25 @@ public static  MainProcess() {  //总流程
 
 
     //2.消费者购买阶段
+    //2.1 数据准备
     let delList:number[] = []; //要删除的消费者列表
+    let earningList:number[] = []; //每个消费者消费的金额
+    let satisfactionList:number[] = [];//每个消费者的满意度变化
     
     
     for (let i = 0; i < this.customerGroup.length;i++){
-
         
-        
-        
+        let satChange:number = 0;
+
+        if(ToolsClass.roll(0.3)){//30%概率购买
+            //if(ToolsClass.roll(this.customerGroup[i].cat))
+            if(this.customerGroup[i].cat > 0){//
+
+            }
+
+            if(this.customerGroup[i].dog > 0){//
+
+            }
 
 
 
@@ -67,15 +79,33 @@ public static  MainProcess() {  //总流程
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+        }else{
+
+        }
 
         //如果消费者满意度低，将消费加入删除列表
         // 满意度 + 会员*5 小于 20 
-        if(this.customerGroup[i].satisfaction + this.customerGroup[i].mumber * 5 < 20 ){
+        if(this.customerGroup[i].satisfaction + this.customerGroup[i].mumber * 5 < 40 ){
             delList.push(i);
+        }else{
+            if(ToolsClass.roll(0.02)){
+                delList.push(i);
+            }
         }
 
 
-        //显示流失情况
+
 
 
     }
@@ -89,11 +119,12 @@ public static  MainProcess() {  //总流程
 
     //3.删除不满的消费者
     if(delList.length!=0){
+        delList = ToolsClass.sort(delList);
         for(let i = delList.length - 1 ; i >= 0; i--){
             this.delCustomerGroup(delList[i]);
         }        
     }
-    
+    //显示流失情况    
     console.log("流失顾客"+delList.length+"名，剩余"+this.customerGroup.length+"名");
 
 }

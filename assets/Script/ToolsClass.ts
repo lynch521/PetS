@@ -54,6 +54,30 @@ export class ToolsClass{
         return min+Math.random()*(max-min+1);
     }
 
+
+    /**
+     * 返回0或1
+     * @param chance 返回1的概率，0到1间
+     */
+    static roll(chance:number){
+        if(chance>1){
+            console.log("概率值大于1");
+            return 1;
+        }else if(chance<0){
+            console.log("概率值小于0");
+            return 0;
+        }
+        let dice = Math.random();
+        if(dice <= chance){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+
+
+
 /**
  * 用于概率不均等的随机
  * @param probability 每种结果的概率
@@ -86,6 +110,18 @@ export class ToolsClass{
         return value[n-1];
     }
 
+    private static compare(a:number,b:number):number{
+        return a-b;
+    }
+
+    /**
+     * 从小到大排序
+     * @param list 数字数组
+     */
+    static sort(list:number[]):number[]{
+        list.sort(this.compare);
+        return list;
+    }
 
 
 

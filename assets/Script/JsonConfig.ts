@@ -17,24 +17,29 @@ export class JsonConfig
     
     static getItem(type:ConfigType,id:number):any
     {   
-        return this.Config[type][id - 1];  
+        return this.Config[type][id];  
     }
 
-    static getAllItem(type:ConfigType):any
+    static getAllItem(type:ConfigType):any[]
     {   
-        return this.Config[type];  
+        let configArr:any[] = [];
+        for(let i in this.Config[type])
+        {
+            configArr.push(this.Config[type][i])
+        }
+        return configArr;  
     }
 
     static setItem(type:ConfigType,id:number,item:any):void 
     {
-        this.Config[type][id - 1] = item;
+        this.Config[type][id] = item;
     }
 
     static setJson(type:ConfigType,item:cc.JsonAsset)
     {
         if(!JsonConfig.Config[type])
         {
-            JsonConfig.Config[type] = new Array<any>();
+            JsonConfig.Config[type] = {};
         }
         for(let i = 0;i<(item.json as Array<Object>).length;i++)
         {

@@ -1,6 +1,9 @@
 import {Customer} from './Customer'
 import { PlayerInfo } from './PlayerInfo'
-import { ToolsClass } from './ToolsClass';
+import { ToolsClass } from './ToolsClass'
+import { Service, ServiceCol } from './service';
+import { JsonConfig } from './JsonConfig';
+
 
 export  class CustomerManager {
 
@@ -58,14 +61,25 @@ public static  MainProcess() {  //总流程
         let satChange:number = 0;
 
         if(ToolsClass.roll(0.3)){//30%概率购买
+            
+            
+            
+            
             //if(ToolsClass.roll(this.customerGroup[i].cat))
             if(this.customerGroup[i].cat > 0){//
+                
+                
 
             }
 
             if(this.customerGroup[i].dog > 0){//
 
+
+
+
             }
+
+
 
 
 

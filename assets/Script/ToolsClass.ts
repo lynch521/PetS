@@ -110,6 +110,59 @@ export class ToolsClass{
         return value[n-1];
     }
 
+    /**
+     * 对于[{}]类型的数组进行搜索
+     * @param list 数组
+     * @param key 搜索列名
+     * @param parameter 搜索参数
+     * @param meth 搜索方法 0————等于参数（默认），负数————小于参数，正数————大于参数
+     */
+    static select(list:any[],key:string,parameter:any,meth:number = 0):any[]{
+        let result:any[];
+        if(meth==0){
+            for(let i in list){
+                if(list[i][key]==parameter){
+                    result.push(list[i]);
+                }
+            }
+        }else if(meth>0){
+            for(let i in list){
+                if(list[i][key]>parameter){
+                    result.push(list[i]);
+                }
+            }
+        }else{
+            for(let i in list){
+                if(list[i][key]<parameter){
+                    result.push(list[i]);
+                }
+            }
+        }       
+        return result;
+    }
+
+    /**
+     * 抽取特定一列数据
+     * @param list 
+     * @param key 抽取的列名
+     */
+    static getCol(list:any[],key:string){
+        let result:any[];
+        for(let i of list){
+            result.push(i[key]);
+        }
+        return result;
+    }
+
+
+
+
+
+
+
+
+
+
     private static compare(a:number,b:number):number{
         return a-b;
     }

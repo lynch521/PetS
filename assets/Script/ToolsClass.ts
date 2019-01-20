@@ -118,7 +118,7 @@ export class ToolsClass{
      * @param meth 搜索方法 0————等于参数（默认），负数————小于参数，正数————大于参数
      */
     static select(list:any[],key:string,parameter:any,meth:number = 0):any[]{
-        let result:any[];
+        let result:any[]=[];
         if(meth==0){
             for(let i in list){
                 if(list[i][key]==parameter){
@@ -147,12 +147,14 @@ export class ToolsClass{
      * @param key 抽取的列名
      */
     static getCol(list:any[],key:string){
-        let result:any[];
-        for(let i of list){
-            result.push(i[key]);
+        let result:any[] = [];
+        for(let i in list){
+            let item = list[i];
+            result.push(item[key]);
+            //result.push(item[key]);
         }
         return result;
-    }
+    } 
 
 
 

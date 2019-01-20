@@ -41,7 +41,7 @@ export class JsonConfig
      * @param parameter 搜索的参数 如等于12中的"12"
      * @param meth 搜索方法 0————等于参数(默认)，负数————小于参数，正数————大于参数
      */
-    static selectItem(type:ConfigType,key:any,parameter:any,meth:number =0):any[]{
+    static selectItem(type:ConfigType,key:string,parameter:any,meth:number =0):any[]{
 
         let list :any[] = this.getAllItem(type);        
         

@@ -2,7 +2,7 @@ import {Customer} from './Customer'
 import { PlayerInfo } from './PlayerInfo'
 import { ToolsClass } from './ToolsClass'
 import { Service, ServiceCol } from './service';
-import { JsonConfig } from './JsonConfig';
+import { JsonConfig, ConfigType } from './JsonConfig';
 
 
 export  class CustomerManager {
@@ -27,7 +27,9 @@ static startCustomerGroupLength = 40;
  */
 public static  MainProcess() {  //总流程
     
-    //1.消费者生成阶段
+    //1.消费者阶段
+    
+    //消费者生成&增加阶段
     if(this.customerGroup.length==0){//如果当前消费者组为空，则新建一个
         this.creatCustomerGroup(40);  
     }
@@ -48,22 +50,38 @@ public static  MainProcess() {  //总流程
      
     }
 
+    //1.1消费者随机事件
+    //
 
     //2.消费者购买阶段
     //2.1 数据准备
     let delList:number[] = []; //要删除的消费者列表
-    let earningList:number[] = []; //每个消费者消费的金额
-    let satisfactionList:number[] = [];//每个消费者的满意度变化
+    let earning:number = 0; //本回合收入
+    let earningList:number[] = [this.customerGroup.length]; //每个消费者消费的金额
+    let satisfactionList:number[] = [this.customerGroup.length];//每个消费者的满意度变化
     
+    //2.2 特殊购买阶段
     
-    for (let i = 0; i < this.customerGroup.length;i++){
+
+
+    //2.3 一般购买阶段
+
+    for (let i = 0; i < this.customerGroup.length;i++){        
         
-        let satChange:number = 0;
+        let customer:Customer = this.customerGroup[i];//消费者
 
         if(ToolsClass.roll(0.3)){//30%概率购买
+
+            let serviceList = ToolsClass.getCol(JsonConfig.getAllItem(ConfigType.Service),"id");
             
-            
-            
+            for(let i of serviceList){
+                let service = JsonConfig.selectItem(ConfigType.Service,"id",i)[0];
+                if(ToolsClass.roll(service.necessity * service.consumable/10000)){//service.necessity * service.consumable
+                    let result = this.buy(customer,i);
+
+                }
+                
+            }
             
             //if(ToolsClass.roll(this.customerGroup[i].cat))
             if(this.customerGroup[i].cat > 0){//
@@ -110,7 +128,7 @@ public static  MainProcess() {  //总流程
 
         //如果消费者满意度低，将消费加入删除列表
         // 满意度 + 会员*5 小于 20 
-        if(this.customerGroup[i].satisfaction + this.customerGroup[i].mumber * 5 < 40 ){
+        if(this.customerGroup[i].satisfaction + this.customerGroup[i].mumber * 5 < 30 ){
             delList.push(i);
         }else{
             if(ToolsClass.roll(0.02)){
@@ -195,12 +213,19 @@ public static  delCustomerGroup(n:number){
 }
 
 public static buy(customer:Customer,id:number){
+    //获取服务信息
+    let service = JsonConfig.selectItem(ConfigType.Service,"id",id)[0];
+    //计算收入
+    let number = ToolsClass.random(1,service.numberlimit);
+    let income = service.price * number;
+    customer.sum = customer.sum + income;
+    //库存减少！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+    console.log(customer.name+customer.id+"购买了"+number+"个"+service.name+"收入"+income+"元");
 
-
-
-
-
-
+    return {
+        buy_income: income,
+        buy_number: number,
+    };
 }
 
 

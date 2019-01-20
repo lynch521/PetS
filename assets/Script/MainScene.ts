@@ -112,8 +112,10 @@ export default class MainScene extends cc.Component {
      * 增加柜台
      * @param tempID 柜台模板id
      */
-    private addCounter(event:Event,tempID:string):void {
-        
+    addCounter(tempID:number):void 
+    {
+        CounterManager.getIns().addCounter(tempID);
+        this.updateCounterList();
     }
 
     private openCounterListUI():void

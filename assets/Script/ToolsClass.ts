@@ -37,10 +37,56 @@ export class ToolsClass{
         return randomPool[this.random(0,randomPool.length-1)];
     }
 
-
+/**
+ * 生成整数随机数
+ * @param min 最小值（含） 
+ * @param max 最大值（含）
+ */
     static random(min:number,max:number){//生成随机属性
         return min+Math.floor(Math.random()*(max-min+1));
     }
+/**
+ * 生成浮点随机数
+ * @param min 
+ * @param max 
+ */
+    static floatRandom(min:number,max:number){
+        return min+Math.random()*(max-min+1);
+    }
+
+/**
+ * 用于概率不均等的随机
+ * @param probability 每种结果的概率
+ * @param value 每种结果的取值
+ */
+    static UnequalRandom(probability:number[],value:number[]){
+        if(probability.length != value.length){
+            console.log("概率数量不等于取值数量，请检查");
+        }
+
+        let n = probability.length;
+
+        let sum:number = 0;
+
+        for(let i =0 ; i < n;i++){//
+            sum = sum + probability[i];
+        }
+
+        let seed = Math.random() * sum;
+
+        for(let i = 0 ; i < n ; i++ ){
+            if(seed < probability[i]){
+                return value[i];
+            }
+            else{
+                seed = seed - probability[i];
+            }
+        }
+        console.log("随机函数出错");
+        return value[n-1];
+    }
+
+
 
 
 

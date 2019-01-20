@@ -1,6 +1,8 @@
 import { Assistant } from "./Assistant";
 import { AssistantManager } from "./AssistantManager";
 import { CounterManager } from "./CounterManager";
+import { CustomerManager } from "./CustomerManager";
+
 
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -43,6 +45,7 @@ export class PlayerInfo {
             pop:this.pop,
             assistantInfo:AssistantManager.toJson(),
             counterInfo:CounterManager.getIns().toJson(),
+            customerInfo:CustomerManager.toJson(),
         }
     }
 
@@ -98,7 +101,7 @@ export class PlayerInfo {
             PlayerInfo.ins.pop = jsonObj.pop as number;
             AssistantManager.initWithJson(jsonObj.assistantInfo);
             CounterManager.getIns().initWithJson(jsonObj.counterInfo);
-            
+            CustomerManager.initWithJson(jsonObj.customerInfo);
             return PlayerInfo.ins;
         }
         else
